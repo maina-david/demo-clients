@@ -1,6 +1,6 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Redirect } from 'react-router-dom'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 import ClientsList from './components/clients/ClientsList'
@@ -12,7 +12,10 @@ import Protected from './components/auth/Protected'
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>     
+      <BrowserRouter>  
+      <Route exact path="/">
+          <Redirect to="/allClients" />
+      </Route>
       <Route path="/login">
         <Login />
       </Route>

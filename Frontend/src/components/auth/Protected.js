@@ -10,7 +10,7 @@ function Protected(props)
         {
             history.push("/login")
         }
-    }, [])
+    }, [history])
 
     return(
         <div>

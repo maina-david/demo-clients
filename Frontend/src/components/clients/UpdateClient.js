@@ -20,7 +20,7 @@ function UpdateClient(props)
             setData(result)
         }
         fetchData()
-      }, [])
+      }, [params.clientId])
 
     async function updateClient (){
         let item = {name, phone, location}

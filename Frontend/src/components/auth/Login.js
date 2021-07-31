@@ -8,9 +8,9 @@ function Login()
     useEffect(()=> {
         if(localStorage.getItem("user-info"))
         {
-            history.push("/add")
+            history.push("/allClients")
         }
-    }, [])
+    }, [history])
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 

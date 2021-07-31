@@ -10,7 +10,8 @@ function Register()
         {
             history.push("/allClients")
         }
-    }, [history])
+        // eslint-disable-next-line
+    }, [])
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")

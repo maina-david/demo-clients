@@ -10,7 +10,8 @@ function Protected(props)
         {
             history.push("/login")
         }
-    }, [history])
+        // eslint-disable-next-line
+    }, [])
 
     return(
         <div>

@@ -20,7 +20,8 @@ function UpdateClient(props)
             setData(result)
         }
         fetchData()
-      }, [params.clientId])
+        // eslint-disable-next-line
+      }, [])
 
     async function updateClient (){
         let item = {name, phone, location}

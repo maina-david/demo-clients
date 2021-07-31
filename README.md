@@ -3,9 +3,6 @@ Contains PHP/Laravel backend API and React Frontend
 
 #BACKEND API
 Built using PHP Laravel framework
-Live Demo: http://testapi.prestigemanagement.net/api/
-
-/login use email:admin@test.com  password:Admin$1234
 
 Contains /login, /register/, and /clients which is an API resource which is authenticated; 
   >(GET) /clients will list all, 

@@ -18,7 +18,7 @@ class ClientController extends Controller
     public function index()
     {
         $clients = Client::all();
-        return response([ 'clients' => ClientResource::collection($clients), 'message' => 'Retrieved successfully'], 200);
+        return response(ClientResource::collection($clients));
     }
 
     /**
@@ -54,7 +54,7 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        return response(['client' => new ClientResource($client), 'message' => 'Retrieved successfully'], 200);
+        return response(new ClientResource($client));
     }
 
     /**
@@ -81,6 +81,6 @@ class ClientController extends Controller
     {
         $client->delete();
 
-        return response(['message' => 'Deleted']);
+        return response(['message' => 'Client has been deleted!']);
     }
 }

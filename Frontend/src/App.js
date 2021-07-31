@@ -1,26 +1,36 @@
-import React, { Component } from 'react';
 import './App.css';
-import { Router, Switch, Route} from 'react-router-dom';
-import { Client } from './clients/client.component';
-import  { Login } from './login/';
-import { Home } from './home/';
-import { history } from './_helpers';
-import { PrivateRoute } from './_components';
-class App extends Component {
-    render() {
-        return (
-            <div className="App">
-                <Router history={history}>
-                   <div>
-                      <Switch>
-                         <PrivateRoute exact path='/home' component={Home} />
-                         <PrivateRoute exact path='/client' component={Client} />
-                         <Route exact path='/' component={Login} />
-                      </Switch>
-                   </div>
-                </Router>
-            </div>
-        );
-    }
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { BrowserRouter, Route } from 'react-router-dom'
+import Login from './components/auth/Login'
+import Register from './components/auth/Register'
+import ClientsList from './components/clients/ClientsList'
+import AddClient from './components/clients/AddClient'
+import UpdateClient from './components/clients/UpdateClient'
+import Protected from './components/auth/Protected'
+
+
+function App() {
+  return (
+    <div className="App">
+      <BrowserRouter>     
+      <Route path="/login">
+        <Login />
+      </Route>
+      <Route path="/register">
+        <Register />
+      </Route>
+      <Route path="/allClients">
+        <Protected Cmp={ClientsList} />
+      </Route>
+      <Route path="/addClient">
+        <Protected Cmp={AddClient} />
+      </Route>
+      <Route path="/updateClient/:clientId">
+      <Protected Cmp={UpdateClient} />
+      </Route>
+      </BrowserRouter>
+    </div>
+  );
 }
+
 export default App;

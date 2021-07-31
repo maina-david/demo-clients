@@ -26,7 +26,7 @@ Route::group(['middleware' => 'CORS'], function () {
     Route::post('login', [AuthController::class, 'login']);
     });
 
-Route::middleware(['auth:api', 'CORS'])->group(function () {
+Route::middleware(['CORS'])->group(function () {
     //clients api resource
      Route::apiResource('clients', ClientController::class);
     });

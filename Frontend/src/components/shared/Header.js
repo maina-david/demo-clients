@@ -32,7 +32,7 @@ function Header()
     </Nav>
             {localStorage.getItem('user-info') ? 
             <Nav>
-            <NavDropdown title={user && user.user.name}>
+            <NavDropdown title={user && user.name}>
                 <NavDropdown.Item onClick={logOut}>
                     Logout
                 </NavDropdown.Item>

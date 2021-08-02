@@ -36,7 +36,7 @@ class AuthController extends Controller
         ]);
 
         if (!auth()->attempt($loginData)) {
-            return response(['message' => 'This User does not exist, check your details'], 400);
+            return response(['message' => 'This user does not exist, check your details'], 400);
         }
 
         $accessToken = auth()->user()->createToken('authToken')->accessToken;

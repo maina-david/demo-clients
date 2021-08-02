@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
 import { Form, Button, Card } from 'react-bootstrap'
 import Header from '../shared/Header'
+import { ToastContainer, toast } from 'react-toastify';    
+
 function Login() 
 {
     const history = useHistory()
@@ -12,31 +14,37 @@ function Login()
         }
         // eslint-disable-next-line
     }, [])
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    const [email, setEmail] = useState(null)
+    const [password, setPassword] = useState(null)
 
     async function logIn (){
-        let item = {email, password}
+        const data = {email, password}
 
-    let result = await fetch("http://127.0.0.1:8000/api/login", {
-            method: 'POST',
-            body: JSON.stringify(item),
-            headers: {
-                "Content-Type": 'application/json',
-                "Accept": 'application/json'
+        await fetch('http://127.0.0.1:8000/api/login', {
+                method: 'POST', 
+                headers: {
+                'Content-Type': 'application/json',
+            },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.user){ 
+                localStorage.setItem('user-info', JSON.stringify(data.user))
+                history.push("/allClients")
+            }else{
+                toast.error(data.message)
             }
         })
-
-        result = await result.json()
-        if(result.user){
-            localStorage.setItem('user-info', JSON.stringify(result))
-            history.push("/allClients")
-        }
+            .catch((error) => {
+                console.error('Error:', error);
+    });
         
     }
     return(
         <>
         <Header />
+        <ToastContainer /> 
         <div className="col-sm-6 offset-sm-3">
             <Card>
             <Card.Header><h4>User Login</h4></Card.Header>
@@ -54,8 +62,8 @@ function Login()
 
                     </Form>
                     <Card.Footer>
-                    <Button onClick={logIn} variant="primary" type="submit">
-                        Log In
+                    <Button onClick={logIn} id="login-btn" variant="primary" type="submit">
+                     Log In
                     </Button>
                     </Card.Footer>
                     </Card>
